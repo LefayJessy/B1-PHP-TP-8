@@ -1,21 +1,20 @@
 <?php
 
-	// Exercice 1
+	// Exo 1
 	function getCode( $produit ){
 		list( $code , $nom , $prixUnit , $promo ) = explode( ":" , $produit ) ;
 		return $code ;
 	}
 	
-	// Exercice 2
+	// Exo 2
 	function getNom( $produit ){
 		list( $code , $nom , $prixUnit , $promo ) = explode( ":" , $produit ) ;
 		return $nom ;
 	}
 	
-	// Exercice 3
+	// Exo 3
 	function estEnPromo( $produit ){
 		list( $code , $nom , $prixUnit , $promo ) = explode( ":" , $produit ) ;
-		
 		if( $promo == 0 ){
 			return $promo ;
 		}
@@ -28,7 +27,6 @@
 	function estUnPetitPrix($produit, $petitPrix)
 	{
 	    list($code, $nom, $prixUnit, $promo) = explode(":", $produit);
-
 	    if ($prixUnit < $petitPrix) {
 	        return true;
 	    } else {
@@ -36,20 +34,17 @@
 	    }
 	}
 
-	// Exercice 5
+	// Exo 5
 	function calculerPrixPromo($produit)
 	{
 	    list($code, $nom, $prixUnit, $promo) = explode(":", $produit);
-
 	    $prixPromo = $prixUnit - ($prixUnit * $promo / 100);
-
 	    return $prixPromo;
 	}
 
-	// Exercice 6
+	// Exo 6
 	function genererListeHTML( $produit , $nomFichier = "" ){
 		list( $code , $nom , $prixUnit , $promo ) = explode( ":" , $produit ) ;
-		
 		$html = <<<FIN_HTML
 		
 <!DOCTYPE html>
@@ -70,16 +65,14 @@
 FIN_HTML;
 		
 		if( $nomFichier != "" ){
-			$dest = fopen( "$nomFichier.html" , "w" ) ;	# Ouverture du fichier en mode écriture
-			fwrite( $dest , $html ) ;					# Écriture de la chaîne dans le fichier
-			fclose( $dest ) ;							# Fermeture du fichier
+			$dest = fopen( "$nomFichier.html" , "w" ) ;	
+			fwrite( $dest , $html ) ;					
+			fclose( $dest ) ;							
 		}
-			
 		return $html ;
 	}
 
-
-	// Exercice 7
+	// Exo 7
 	function genererTableHTML($produit, $nomFichier = "")
 	{
 	    list($code, $nom, $prixUnit, $promo) = explode(":", $produit);
@@ -135,41 +128,33 @@ FIN_HTML;
 	    return $html;
 	}
 
-	# Fonction principale
 	function mainTest()
 	{
 	    $produitTest1 = "178:Dentifrice fraise:15:10";
 	    $produitTest2 = "179:Dentifrice au sel marin:8.9:0";
 
-	    // Exercice 1
-	    echo "\n1) Code d'un produit -------------------------------------\n";
-	    // Produit 1
+	    // Exo 1
+	    echo "\n1) Code d'un produit \n";
 	    $codeProduit1 = getCode( $produitTest1 ) ;
 	    echo "Code du produit 1 : $codeProduit1\n" ;
-	    // Produit 2
 	    $codeProduit2 = getCode( $produitTest2 ) ;
 	    echo "Code du produit 2 : $codeProduit2\n" ;
 
-
-	    // Exercice 2
-	    echo "\n2) Nom d'un produit -------------------------------------\n";
-
+	    // Exo 2
+	    echo "\n2) Nom d'un produit \n";
 	    $nomProduit1 = getNom( $produitTest1 ) ;
 	    echo "Nom du produit 1 : $nomProduit1\n";
-
 	    $nomProduit2 = getNom( $produitTest2 ) ;
 	    echo "Nom du produit 2 : $nomProduit2\n";
 
-	    // Exercice 3
-	    echo "\n3)   Produit en promotion -------------------------------------\n";
-
+	    // Exo 3
+	    echo "\n3)   Produit en promotion \n";
 	    if( estEnPromo( $produitTest1 ) == TRUE ){
 	        echo "Le produit $nomProduit1 est en promotion.\n" ;
 	    }
 	    else {
 	        echo "Le produit $nomProduit1 n'est pas en promotion.\n" ;
 	    }
-
 	    if( estEnPromo( $produitTest2 ) == TRUE ){
 	        echo "Le produit $nomProduit2 est en promotion.\n" ;
 	    }
@@ -177,16 +162,14 @@ FIN_HTML;
 	        echo "Le produit $nomProduit2 n'est pas en promotion.\n" ;
 	    }
 
-	    // Exercice 4
-	    echo "\n4) Vendu à un petit prix ? -------------------------------------\n";
-
+	    // Exo 4
+	    echo "\n4) Vendu à un petit prix ? \n";
 	    if( estUnPetitPrix( $produitTest1 , 10 ) == TRUE ){
 	        echo "Le produit $nomProduit1 est proposé à un petit prix.\n" ;
 	    }
 	    else {
 	        echo "Le produit $nomProduit1 n'est pas proposé à un petit prix.\n" ;
 	    }
-
 	    if( estUnPetitPrix( $produitTest2 , 10 ) == TRUE ){
 	        echo "Le produit $nomProduit2 est proposé à un petit prix.\n" ;
 	    }
@@ -194,7 +177,7 @@ FIN_HTML;
 	        echo "Le produit $nomProduit2 n'est pas proposé à un petit prix.\n" ;
 	    }
 
-	    // Exercice 5
+	    // Exo 5
 	    echo "\n5) Promotion appliquée -------------------------------------\n";
 
 	    if( estEnPromo( $produitTest1 ) == TRUE ){
@@ -213,25 +196,21 @@ FIN_HTML;
 	        echo "Pas de promotion pour le produit $nomProduit2.\n" ;
 	    }
 
-	    // Exercice 6
-	    echo "\n6.a) Code HTML Produit 1 -------------------------------------\n";
+	    // Exo 6
+	    echo "\n6.a) Code HTML Produit 1 \n";
 	    $codeHTML = genererListeHTML( $produitTest1 ) ;
 	    echo "Code HTML généré :\n$codeHTML\n" ;
-
-	    echo "\n6.b) Code HTML Produit 2 -------------------------------------\n";
+	    echo "\n6.b) Code HTML Produit 2 \n";
 	    $codeHTML = genererListeHTML( $produitTest2 , "vueProduitListe_Produit" ) ;
 	    echo "Code HTML généré :\n$codeHTML\n" ;
 
-	    // Exercice 7
-	    echo "\n7.a) Produit 1 -------------------------------------\n";
+	    // Exo 7
+	    echo "\n7.a) Produit 1 \n";
 	    $codeHTML = genererTableHTML($produitTest1, "vue-produit");
 	    echo "Code HTML généré :\n$codeHTML\n";
-
-		echo "\n7.b) Produit 2 -------------------------------------\n";
+		echo "\n7.b) Produit 2 \n";
 	    $codeHTML = genererTableHTML($produitTest2, "vue-produit");
 	    echo "Code HTML généré :\n$codeHTML\n";
 	}
-
-	# Programme Principal
 	mainTest();
 ?>
